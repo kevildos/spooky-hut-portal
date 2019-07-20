@@ -20,13 +20,18 @@ class TableRow extends Component {
     //If cell blue, make white
     else if (actives[id]) {
       actives[id] = 0;
-      //Check if next cell is orange
-      if (actives[indexNeighbor] === 2) {
-        actives[indexNeighbor] = 0;
-        actives[indexNeighbor2] = 1;
-      } else {
-        actives[indexNeighbor] = 1;
+      //Find next available cell that is not orange
+      let index = indexNeighbor;
+      while (index !== id) {
+        if (actives[index] === 2) {
+          actives[index] = 0;
+        } else if (actives[index] === 0) {
+          actives[index] = 1;
+          break;
+        }
+        index = (index + 1) % 4;
       }
+      if (index === id) actives[id] = 1;
     }
     console.log(actives);
 
