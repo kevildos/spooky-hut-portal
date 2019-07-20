@@ -21,7 +21,12 @@ class App extends Component {
     this.callAPI();
   }
   render() {
-    return <p>{this.state.apiResponse}</p>;
+    return (
+      <React.Fragment>
+        <Table />
+        <p>{this.state.apiResponse}</p>
+      </React.Fragment>
+    );
   }
 }
 

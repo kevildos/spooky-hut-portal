@@ -9,20 +9,20 @@ class TableRow extends Component {
   };
 
   doIncrement = id => {
-    const actives = [...this.state.actives];
-    actives[id] = { ...this.state.actives[id] };
+    const actives = this.state.actives.slice();
     const indexNeighbor = (id + 1) % 4;
     const indexNeighbor2 = (id + 2) % 4;
-    actives[indexNeighbor] = { ...this.state.actives[indexNeighbor] };
-    actives[indexNeighbor2] = { ...this.state.actives[indexNeighbor2] };
 
     //If cell blank, make orange
     if (!actives[id]) actives[id] = 2;
+    //If cell orange, make blank
+    else if (actives[id] === 2) actives[id] = 0;
     //If cell blue, make white
     else if (actives[id]) {
       actives[id] = 0;
-      //Make neighbor or next neighbor blue
+      //Check if next cell is orange
       if (actives[indexNeighbor] === 2) {
+        actives[indexNeighbor] = 0;
         actives[indexNeighbor2] = 1;
       } else {
         actives[indexNeighbor] = 1;
