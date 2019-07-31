@@ -1,0 +1,18 @@
+.TableData {
+  width: 20%;
+  padding: 2rem;
+}
+
+.TableData:hover {
+  box-shadow: 1px 2px 4px grey;
+}
+
+.TableDataTopRow {
+  padding: 1rem;
+  width: 20%;
+}
+
+.TableDataFirstColumn {
+  padding: 2rem;
+  width: 20%;
+}

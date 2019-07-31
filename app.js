@@ -4,10 +4,10 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
+var Datastore = require("nedb");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var testAPIRouter = require("./routes/testAPI");
 
 var app = express();
 
@@ -24,7 +24,64 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/testAPI", testAPIRouter);
+
+const database = new Datastore({ filename: "database.db", autoload: true });
+
+//database.insert({
+//index: 0,
+//name: "first",
+//rowValues: [1, 0, 0, 0]
+//});
+//database.insert({
+//index: 1,
+//name: "second",
+//rowValues: [0, 1, 0, 0]
+//});
+//database.insert({
+//index: 2,
+//name: "third",
+//rowValues: [0, 0, 1, 0]
+//});
+//database.insert({
+//index: 3,
+//name: "fourth",
+//rowValues: [0, 0, 0, 1]
+//});
+
+//database.persistence.compactDatafile();
+
+app.get("/:name", function(req, res, next) {
+  console.log("In GET route accessing name:" + req.params.name);
+  database.find({ name: req.params.name }, (err, docs) => {
+    console.error("Error:" + err);
+    console.log("Index:" + docs[0].index);
+    console.log("RowValues:" + docs[0].rowValues);
+    res.status(200).send(docs[0].rowValues);
+  });
+});
+
+app.get("/:index", function(req, res, next) {
+  console.log("In GET route accessing id:" + req.params.index);
+  database.find({ index: req.params.index }, (err, docs) => {
+    console.error("Error:" + err);
+    console.log("RowValues:" + docs[0].rowValues);
+    res.status(200).send(docs[0].rowValues);
+  });
+});
+
+app.put("/:name", function(req, res, next) {
+  const newRow = req.body;
+  console.log("In PUT route accessing name:" + req.params.name);
+  console.log("req.body:" + newRow);
+  res.send(newRow);
+  database.update(
+    { name: req.params.name },
+    { $set: { rowValues: newRow } },
+    { multi: false },
+    function(err, numReplaced) {}
+  );
+  database.persistence.compactDatafile();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import TableRow from "./tablerow";
 import "./table.css";
-import "./tabledata.css";
+import Table from "react-bootstrap/Table";
 
-class Table extends Component {
+class MyTable extends Component {
   state = {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
     chores: ["Trash", "Recyclables", "Sweep", "Mop"]
   };
   render() {
     return (
+      //<table className="table-bordered m-5 Table ">
       //table table-condensed table-bordered
-      <table className="table-bordered Table ">
+      <Table>
         <thead>
           <tr>
             <th className="invisible">Chores</th>
             {this.state.names.map(name => (
-              <th key={name} className="TableDataTopRow">
-                {name}
-              </th>
+              <th key={name}>{name}</th>
             ))}
           </tr>
         </thead>
@@ -32,9 +31,9 @@ class Table extends Component {
             />
           ))}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }
 
-export default Table;
+export default MyTable;

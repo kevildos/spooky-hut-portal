@@ -3,24 +3,56 @@ import TableData from "./tabledata";
 
 class TableRow extends Component {
   state = {
-    name: this.props.name,
-    columns: this.props.columns,
-    actives: [1, 0, 0, 0]
+    names: [],
+    actives: [0, 0, 0, 0]
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      names: ["first", "second", "third", "fourth"],
+      actives: [0, 0, 0, 0]
+    };
+  }
+
+  async getAPI(index) {
+    const response = await fetch(
+      `http://localhost:3001/${this.state.names[index]}`
+    );
+    const actives = await response.json();
+    this.setState({ actives });
+  }
+
+  async putAPI(index) {
+    const response = await fetch(
+      `http://localhost:3001/${this.state.names[index]}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.state.actives)
+      }
+    );
+  }
+
+  componentWillMount() {
+    this.getAPI(this.props.rowIndex);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState !== this.state) this.putAPI(this.props.rowIndex);
+  }
 
   doIncrement = id => {
     const actives = this.state.actives.slice();
     const indexNeighbor = (id + 1) % 4;
-    const indexNeighbor2 = (id + 2) % 4;
 
-    //If cell blank, make orange
+    //Determine if cell should be blank, orange, or where to place blue after skipping oranges
     if (!actives[id]) actives[id] = 2;
-    //If cell orange, make blank
     else if (actives[id] === 2) actives[id] = 0;
-    //If cell blue, make white
     else if (actives[id]) {
       actives[id] = 0;
-      //Find next available cell that is not orange
       let index = indexNeighbor;
       while (index !== id) {
         if (actives[index] === 2) {
@@ -33,7 +65,6 @@ class TableRow extends Component {
       }
       if (index === id) actives[id] = 1;
     }
-    console.log(actives);
 
     this.setState({ actives });
   };
@@ -41,11 +72,11 @@ class TableRow extends Component {
   render() {
     return (
       <tr>
-        <td>{this.state.name}</td>
+        <td classname="TableDataFirstColumn">{this.props.name}</td>
         {this.state.actives.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}
-            key={this.state.columns[index]}
+            key={this.props.columns[index]}
             id={index}
             active={status}
           />
