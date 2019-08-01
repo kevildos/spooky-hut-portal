@@ -21,11 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//Currently there is no way to really get to the else code block
 const dev = app.get("env") !== "production";
-if (!dev) {
+if (dev) {
   app.use(express.static(path.join(__dirname, "client", "build")));
 } else {
-  app.use(express.static(path.join(__dirname, "public")));
+  //app.use(express.static(path.join(__dirname, "public")));
 }
 
 app.use("/", indexRouter);
@@ -56,26 +57,26 @@ const database = new Datastore({ filename: "database.db", autoload: true });
 
 //database.persistence.compactDatafile();
 
-app.get("/:name", function(req, res, next) {
+app.get("/api/:name", function(req, res, next) {
   console.log("In GET route accessing name:" + req.params.name);
   database.find({ name: req.params.name }, (err, docs) => {
     console.error("Error:" + err);
-    console.log("Index:" + docs[0].index);
-    console.log("RowValues:" + docs[0].rowValues);
+    //console.log("Index:" + docs[0].index);
+    //console.log("RowValues:" + docs[0].rowValues);
     res.status(200).send(docs[0].rowValues);
   });
 });
 
-app.get("/:index", function(req, res, next) {
-  console.log("In GET route accessing id:" + req.params.index);
-  database.find({ index: req.params.index }, (err, docs) => {
-    console.error("Error:" + err);
-    console.log("RowValues:" + docs[0].rowValues);
-    res.status(200).send(docs[0].rowValues);
-  });
-});
+//app.get("/:index", function(req, res, next) {
+//console.log("In GET route accessing id:" + req.params.index);
+//database.find({ index: req.params.index }, (err, docs) => {
+//console.error("Error:" + err);
+//console.log("RowValues:" + docs[0].rowValues);
+//res.status(200).send(docs[0].rowValues);
+//});
+//});
 
-app.put("/:name", function(req, res, next) {
+app.put("/api/:name", function(req, res, next) {
   const newRow = req.body;
   console.log("In PUT route accessing name:" + req.params.name);
   console.log("req.body:" + newRow);

@@ -17,7 +17,7 @@ class TableRow extends Component {
 
   async getAPI(index) {
     const response = await fetch(
-      `http://localhost:3001/${this.state.names[index]}`
+      `http://localhost:3001/api/${this.state.names[index]}`
     );
     const actives = await response.json();
     this.setState({ actives });
@@ -25,7 +25,7 @@ class TableRow extends Component {
 
   async putAPI(index) {
     const response = await fetch(
-      `http://localhost:3001/${this.state.names[index]}`,
+      `http://localhost:3001/api/${this.state.names[index]}`,
       {
         method: "PUT",
         headers: {
