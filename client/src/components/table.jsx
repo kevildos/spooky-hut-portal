@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TableRow from "./tablerow";
 import "./table.css";
-import "./tabledata.css";
 
 class Table extends Component {
   state = {
@@ -10,29 +9,32 @@ class Table extends Component {
   };
   render() {
     return (
-      //table table-condensed table-bordered
-      <table className="table-bordered Table ">
-        <thead>
-          <tr>
-            <th className="invisible">Chores</th>
-            {this.state.names.map(name => (
-              <th key={name} className="TableDataTopRow">
-                {name}
-              </th>
+      <React.Fragment>
+        <table className="table-bordered Table ">
+          <thead>
+            <tr>
+              <th className="invisible">Chores</th>
+              {this.state.names.map(name => (
+                <th key={name} className="TableDataTopRow">
+                  {name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.chores.map((chore, index) => (
+              <TableRow
+                key={chore}
+                rowIndex={index}
+                columns={this.state.names}
+                name={chore}
+              />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.chores.map((chore, index) => (
-            <TableRow
-              key={chore}
-              rowIndex={index}
-              columns={this.state.names}
-              name={chore}
-            />
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+
+        <i src="trash-solid.svg" height="42" width="24"></i>
+      </React.Fragment>
     );
   }
 }

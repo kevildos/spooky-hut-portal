@@ -1,5 +1,4 @@
 .TableData {
-  width: 20%;
   padding: 2rem;
 }
 
@@ -7,12 +6,66 @@
   box-shadow: 1px 2px 4px grey;
 }
 
-.TableDataTopRow {
-  padding: 1rem;
-  width: 20%;
+.BlueToNothing {
+  background-color: #17a2b8;
+  animation-name: blue-nothing;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
 }
 
-.TableDataFirstColumn {
-  padding: 2rem;
-  width: 20%;
+.OrangeToNothing {
+  background-color: #ffc107;
+  animation-name: orange-nothing;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+}
+
+.NothingToBlue {
+  background-color: transparent;
+  animation-name: nothing-blue;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+}
+
+.NothingToOrange {
+  background-color: transparent;
+  animation-name: nothing-orange;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+}
+
+@keyframes blue-nothing {
+  from {
+    background-color: #17a2b8;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes orange-nothing {
+  from {
+    background-color: #ffc107;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes nothing-blue {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: #17a2b8;
+  }
+}
+
+@keyframes nothing-orange {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: #ffc107;
+  }
 }

@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import TableData from "./tabledata";
+import "./tablerow.css";
 
 class TableRow extends Component {
   state = {
     names: [],
-    actives: [0, 0, 0, 0]
+    activeCells: [0, 0, 0, 0]
   };
 
   constructor(props) {
     super(props);
     this.state = {
       names: ["first", "second", "third", "fourth"],
-      actives: [0, 0, 0, 0]
+      activeCells: [0, 0, 0, 0]
     };
   }
 
@@ -19,8 +20,8 @@ class TableRow extends Component {
     const response = await fetch(
       `http://localhost:3001/api/${this.state.names[index]}`
     );
-    const actives = await response.json();
-    this.setState({ actives });
+    const activeCells = await response.json();
+    this.setState({ activeCells });
   }
 
   async putAPI(index) {
@@ -31,54 +32,60 @@ class TableRow extends Component {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(this.state.actives)
+        body: JSON.stringify(this.state.activeCells)
       }
     );
+    //console.log(response);
   }
 
   componentWillMount() {
     this.getAPI(this.props.rowIndex);
+    console.log("In cWM, activeCells: " + this.state.activeCells);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) this.putAPI(this.props.rowIndex);
+    console.log("In cdU, activeCells: " + this.state.activeCells);
   }
 
   doIncrement = id => {
-    const actives = this.state.actives.slice();
+    const activeCells = this.state.activeCells.slice();
     const indexNeighbor = (id + 1) % 4;
 
     //Determine if cell should be blank, orange, or where to place blue after skipping oranges
-    if (!actives[id]) actives[id] = 2;
-    else if (actives[id] === 2) actives[id] = 0;
-    else if (actives[id]) {
-      actives[id] = 0;
+    if (!activeCells[id]) {
+      if (activeCells.filter(res => res !== 0).length === 0)
+        activeCells[id] = 1;
+      else activeCells[id] = 2;
+    } else if (activeCells[id] === 2) activeCells[id] = 0;
+    else if (activeCells[id]) {
+      activeCells[id] = 0;
       let index = indexNeighbor;
       while (index !== id) {
-        if (actives[index] === 2) {
-          actives[index] = 0;
-        } else if (actives[index] === 0) {
-          actives[index] = 1;
+        if (activeCells[index] === 2) {
+          activeCells[index] = 0;
+        } else if (activeCells[index] === 0) {
+          activeCells[index] = 1;
           break;
         }
         index = (index + 1) % 4;
       }
-      if (index === id) actives[id] = 1;
+      if (index === id) activeCells[id] = 1;
     }
 
-    this.setState({ actives });
+    this.setState({ activeCells });
   };
 
   render() {
     return (
       <tr>
-        <td classname="TableDataFirstColumn">{this.props.name}</td>
-        {this.state.actives.map((status, index) => (
+        <td className="TableDataFirstColumn">{this.props.name}</td>
+        {this.state.activeCells.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}
             key={this.props.columns[index]}
             id={index}
-            active={status}
+            activeStatus={status}
           />
         ))}
       </tr>

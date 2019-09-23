@@ -4,9 +4,9 @@ import "./tabledata.css";
 const TableData = props => {
   const getClass = props => {
     let classes = "TableData ";
-    const { active } = props;
-    if (active) {
-      if (active === 2) return classes + "bg-warning";
+    const { activeStatus } = props;
+    if (activeStatus) {
+      if (activeStatus === 2) return classes + "bg-warning";
       else return classes + "bg-info";
     } else return classes + "";
   };
@@ -15,7 +15,9 @@ const TableData = props => {
     <td
       onClick={() => props.handleIncrement(props.id)}
       className={getClass(props)}
-    />
+    >
+      <i src="../../public/trash-solid.svg" height="1" width="1"></i>
+    </td>
   );
 };
 
