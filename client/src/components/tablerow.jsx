@@ -17,24 +17,19 @@ class TableRow extends Component {
   }
 
   async getAPI(index) {
-    const response = await fetch(
-      `http://localhost:3001/api/${this.state.names[index]}`
-    );
+    const response = await fetch(`/api/${this.state.names[index]}`);
     const activeCells = await response.json();
     this.setState({ activeCells });
   }
 
   async putAPI(index) {
-    const response = await fetch(
-      `http://localhost:3001/api/${this.state.names[index]}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(this.state.activeCells)
-      }
-    );
+    const response = await fetch(`/api/${this.state.names[index]}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state.activeCells)
+    });
     //console.log(response);
   }
 
@@ -78,8 +73,8 @@ class TableRow extends Component {
 
   render() {
     return (
-      <tr>
-        <td className="TableDataFirstColumn">{this.props.name}</td>
+      <div className="row ">
+        <div className="col-sm">{this.props.name}</div>
         {this.state.activeCells.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}
@@ -88,7 +83,7 @@ class TableRow extends Component {
             activeStatus={status}
           />
         ))}
-      </tr>
+      </div>
     );
   }
 }

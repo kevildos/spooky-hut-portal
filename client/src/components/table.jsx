@@ -10,30 +10,26 @@ class Table extends Component {
   render() {
     return (
       <React.Fragment>
-        <table className="table-bordered Table ">
-          <thead>
-            <tr>
-              <th className="invisible">Chores</th>
-              {this.state.names.map(name => (
-                <th key={name} className="TableDataTopRow">
-                  {name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.chores.map((chore, index) => (
-              <TableRow
-                key={chore}
-                rowIndex={index}
-                columns={this.state.names}
-                name={chore}
-              />
+        <div className="container table">
+          <div className="row ">
+            <div className="col-sm tabledata-toprow">Chores</div>
+            {this.state.names.map(name => (
+              <div key={name} className="col-sm tabledata-toprow">
+                {name}
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
 
-        <i src="trash-solid.svg" height="42" width="24"></i>
+          {this.state.chores.map((chore, index) => (
+            <TableRow
+              //className={"tablerow-" + index}
+              key={chore}
+              rowIndex={index}
+              columns={this.state.names}
+              name={chore}
+            />
+          ))}
+        </div>
       </React.Fragment>
     );
   }

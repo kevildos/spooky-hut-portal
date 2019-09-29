@@ -21,42 +21,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//Currently there is no way to really get to the else code block
-const dev = app.get("env") !== "production";
-if (dev) {
-  app.use(express.static(path.join(__dirname, "client", "build")));
-} else {
-  app.use(express.static(path.join(__dirname, "client", "build")));
-  //app.use(express.static(path.join(__dirname, "public")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
+
+//const dev = app.get("env") !== "production";
+//if (dev) {
+//app.use(express.static(path.join(__dirname, "client", "build")));
+//} else {
+//app.use(express.static(path.join(__dirname, "client", "build")));
+////app.use(express.static(path.join(__dirname, "public")));
+//}
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 const database = new Datastore({ filename: "database.db", autoload: true });
-
-//database.insert({
-//index: 0,
-//name: "first",
-//rowValues: [1, 0, 0, 0]
-//});
-//database.insert({
-//index: 1,
-//name: "second",
-//rowValues: [0, 1, 0, 0]
-//});
-//database.insert({
-//index: 2,
-//name: "third",
-//rowValues: [0, 0, 1, 0]
-//});
-//database.insert({
-//index: 3,
-//name: "fourth",
-//rowValues: [0, 0, 0, 1]
-//});
-
-//database.persistence.compactDatafile();
 
 app.get("/api/:name", function(req, res, next) {
   console.log("In GET route accessing name:" + req.params.name);

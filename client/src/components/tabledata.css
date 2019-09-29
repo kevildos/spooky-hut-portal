@@ -1,71 +1,29 @@
-.TableData {
+.tabledata {
   padding: 2rem;
+  transition-duration: 200ms;
 }
 
-.TableData:hover {
+.tabledata:hover {
   box-shadow: 1px 2px 4px grey;
 }
 
-.BlueToNothing {
+.td-blue {
   background-color: #17a2b8;
-  animation-name: blue-nothing;
-  animation-iteration-count: 1;
-  animation-duration: 2s;
 }
 
-.OrangeToNothing {
+.td-orange {
   background-color: #ffc107;
-  animation-name: orange-nothing;
-  animation-iteration-count: 1;
-  animation-duration: 2s;
 }
 
-.NothingToBlue {
-  background-color: transparent;
-  animation-name: nothing-blue;
-  animation-iteration-count: 1;
-  animation-duration: 2s;
+.td-icon {
+  visibility: visible;
 }
 
-.NothingToOrange {
-  background-color: transparent;
-  animation-name: nothing-orange;
-  animation-iteration-count: 1;
-  animation-duration: 2s;
-}
-
-@keyframes blue-nothing {
+@keyframes hide {
   from {
-    background-color: #17a2b8;
+    visibility: visible;
   }
   to {
-    background-color: transparent;
-  }
-}
-
-@keyframes orange-nothing {
-  from {
-    background-color: #ffc107;
-  }
-  to {
-    background-color: transparent;
-  }
-}
-
-@keyframes nothing-blue {
-  from {
-    background-color: transparent;
-  }
-  to {
-    background-color: #17a2b8;
-  }
-}
-
-@keyframes nothing-orange {
-  from {
-    background-color: transparent;
-  }
-  to {
-    background-color: #ffc107;
+    visibility: hidden;
   }
 }

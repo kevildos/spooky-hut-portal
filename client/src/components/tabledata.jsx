@@ -1,23 +1,41 @@
 import React from "react";
 import "./tabledata.css";
+import logo from "./trash-solid.svg";
 
 const TableData = props => {
-  const getClass = props => {
-    let classes = "TableData ";
+  const getClassBlock = props => {
+    let classes = "tabledata col-sm ";
     const { activeStatus } = props;
     if (activeStatus) {
-      if (activeStatus === 2) return classes + "bg-warning";
-      else return classes + "bg-info";
+      if (activeStatus === 2) return classes + "td-orange";
+      else return classes + "td-blue";
     } else return classes + "";
   };
 
+  const getClassImage = props => {
+    let classes = "";
+    const { activeStatus } = props;
+    if (activeStatus) {
+      if (activeStatus === 2) return classes + "invisible";
+      else return classes + "";
+    } else return classes + "invisible";
+  };
+
   return (
-    <td
+    <div
       onClick={() => props.handleIncrement(props.id)}
-      className={getClass(props)}
+      className={getClassBlock(props)}
     >
-      <i src="../../public/trash-solid.svg" height="1" width="1"></i>
-    </td>
+      <div style={{ textAlign: "center" }}>
+        <img
+          src={logo}
+          style={{ display: "inline-block" }}
+          className={getClassImage(props)}
+          height="42"
+          width="24"
+        ></img>
+      </div>
+    </div>
   );
 };
 
