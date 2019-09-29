@@ -4,7 +4,7 @@ import logo from "./trash-solid.svg";
 
 const TableData = props => {
   const getClassBlock = props => {
-    let classes = "tabledata col-sm ";
+    let classes = "tabledata col ";
     const { activeStatus } = props;
     if (activeStatus) {
       if (activeStatus === 2) return classes + "td-orange";

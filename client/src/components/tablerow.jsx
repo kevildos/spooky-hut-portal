@@ -35,12 +35,10 @@ class TableRow extends Component {
 
   componentWillMount() {
     this.getAPI(this.props.rowIndex);
-    console.log("In cWM, activeCells: " + this.state.activeCells);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState !== this.state) this.putAPI(this.props.rowIndex);
-    console.log("In cdU, activeCells: " + this.state.activeCells);
   }
 
   doIncrement = id => {
@@ -74,7 +72,7 @@ class TableRow extends Component {
   render() {
     return (
       <div className="row ">
-        <div className="col-sm">{this.props.name}</div>
+        <div className="col-3">{this.props.name}</div>
         {this.state.activeCells.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}

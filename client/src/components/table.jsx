@@ -12,9 +12,9 @@ class Table extends Component {
       <React.Fragment>
         <div className="container table">
           <div className="row ">
-            <div className="col-sm tabledata-toprow">Chores</div>
+            <div className="col tabledata-toprow">Chores</div>
             {this.state.names.map(name => (
-              <div key={name} className="col-sm tabledata-toprow">
+              <div key={name} className="col tabledata-toprow">
                 {name}
               </div>
             ))}
