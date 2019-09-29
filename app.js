@@ -6,8 +6,8 @@ var logger = require("morgan");
 var cors = require("cors");
 var Datastore = require("nedb");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+//var indexRouter = require("./routes/index");
+//var usersRouter = require("./routes/users");
 
 var app = express();
 
@@ -36,8 +36,8 @@ if (process.env.NODE_ENV === "production") {
 ////app.use(express.static(path.join(__dirname, "public")));
 //}
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+//app.use("/", indexRouter);
+//app.use("/users", usersRouter);
 
 const database = new Datastore({ filename: "database.db", autoload: true });
 
