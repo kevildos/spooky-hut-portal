@@ -5,10 +5,10 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 
-export const BASE_URL =
-  process.env.NODE_ENV !== "production"
-    ? "http://localhost:3000"
-    : "prod-backend-url";
+//export const BASE_URL =
+//process.env.NODE_ENV !== "production"
+//? "http://localhost:3000"
+//: "prod-backend-url";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
