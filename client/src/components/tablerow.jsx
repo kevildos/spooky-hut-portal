@@ -78,6 +78,8 @@ class TableRow extends Component {
             handleIncrement={this.doIncrement}
             key={this.props.columns[index]}
             id={index}
+            logo={this.props.logo}
+            columnClass={this.props.columnClass}
             activeStatus={status}
           />
         ))}

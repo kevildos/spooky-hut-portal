@@ -1,20 +1,33 @@
 import React, { Component } from "react";
 import TableRow from "./tablerow";
 import "./table.css";
+import trash from "../images/trash-solid.svg";
+import recyclabes from "../images/recycle-solid.svg";
+import broom from "../images/broom-solid.svg";
+import water from "../images/water-solid.svg";
 
 class Table extends Component {
   state = {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
-    chores: ["Trash", "Recyclables", "Sweep", "Mop"]
+    chores: ["Trash", "Recyclables", "Sweep", "Mop"],
+    logos: [trash, recyclabes, broom, water],
+    columnClass: "col border m-1 rounded ",
+    topRow: "tabledata-toprow "
   };
+
   render() {
     return (
       <React.Fragment>
-        <div className="container table">
+        <div className="container rounded table ">
           <div className="row ">
-            <div className="col tabledata-toprow">Chores</div>
+            <div className={this.state.columnClass + this.state.topRow}>
+              Chores
+            </div>
             {this.state.names.map(name => (
-              <div key={name} className="col tabledata-toprow">
+              <div
+                key={name}
+                className={this.state.columnClass + this.state.topRow}
+              >
                 {name}
               </div>
             ))}
@@ -26,6 +39,8 @@ class Table extends Component {
               key={chore}
               rowIndex={index}
               columns={this.state.names}
+              logo={this.state.logos[index]}
+              columnClass={this.state.columnClass}
               name={chore}
             />
           ))}
