@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TableData from "./tabledata";
 import "./tablerow.css";
+import { BASE_URL } from "../index";
 
 class TableRow extends Component {
   state = {
@@ -17,13 +18,13 @@ class TableRow extends Component {
   }
 
   async getAPI(index) {
-    const response = await fetch(`/api/${this.state.names[index]}`);
+    const response = await fetch(`${BASE_URL}/api/${this.state.names[index]}`);
     const activeCells = await response.json();
     this.setState({ activeCells });
   }
 
   async putAPI(index) {
-    const response = await fetch(`/api/${this.state.names[index]}`, {
+    const response = await fetch(`${BASE_URL}/api/${this.state.names[index]}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -72,7 +73,7 @@ class TableRow extends Component {
   render() {
     return (
       <div className="row ">
-        <div className="col-3">{this.props.name}</div>
+        <div className="col">{this.props.name}</div>
         {this.state.activeCells.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}
