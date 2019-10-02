@@ -9,8 +9,8 @@
 }
 
 .padding-col {
-  padding: 2rem 0;
-  min-width: 2rem;
+  padding: 2rem;
+  /*min-width: 2rem;*/
 }
 
 .fixed-col {
