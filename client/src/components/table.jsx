@@ -11,14 +11,14 @@ class Table extends Component {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
     chores: ["Trash", "Recyclables", "Sweep", "Mop"],
     logos: [trash, recyclabes, broom, water],
-    columnClass: "col border m-1 rounded ",
+    columnClass: "col border border-dark m-1 padding-col rounded fixed-col ",
     topRow: "tabledata-toprow "
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="container rounded table ">
+        <div className="container table border border-dark rounded ">
           <div className="row ">
             <div className={this.state.columnClass + this.state.topRow}>
               Chores

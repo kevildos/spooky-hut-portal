@@ -1,5 +1,6 @@
 import React from "react";
 import "./tabledata.css";
+import "./table.css";
 import cross from "../images/times-solid.svg";
 
 const TableData = props => {

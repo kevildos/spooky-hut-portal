@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TableData from "./tabledata";
 import "./tablerow.css";
+import "./table.css";
 //import { BASE_URL } from "../index";
 
 class TableRow extends Component {
@@ -73,7 +74,15 @@ class TableRow extends Component {
   render() {
     return (
       <div className="row ">
-        <div className="col">{this.props.name}</div>
+        <div
+          className={this.props.columnClass}
+          style={{
+            color: "white",
+            backgroundColor: "#822900"
+          }}
+        >
+          {this.props.name}
+        </div>
         {this.state.activeCells.map((status, index) => (
           <TableData
             handleIncrement={this.doIncrement}

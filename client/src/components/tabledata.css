@@ -1,5 +1,4 @@
 .tabledata {
-  padding: 2rem;
   transition-duration: 200ms;
 }
 
@@ -13,17 +12,4 @@
 
 .td-orange {
   background-color: #ffc107;
-}
-
-.td-icon {
-  visibility: visible;
-}
-
-@keyframes hide {
-  from {
-    visibility: visible;
-  }
-  to {
-    visibility: hidden;
-  }
 }
