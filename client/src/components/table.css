@@ -15,7 +15,7 @@
 
 .fixed-col {
   text-align: center;
-  flex: 0 0 2rem;
+  /*flex: 0 0 2rem;*/
 }
 
 .tabledata-toprow {
