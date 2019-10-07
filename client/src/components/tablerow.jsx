@@ -74,13 +74,7 @@ class TableRow extends Component {
   render() {
     return (
       <div className="row ">
-        <div
-          className={this.props.columnClass}
-          style={{
-            color: "white",
-            backgroundColor: "#822900"
-          }}
-        >
+        <div className={this.props.columnClass + this.props.borderCells}>
           {this.props.name}
         </div>
         {this.state.activeCells.map((status, index) => (

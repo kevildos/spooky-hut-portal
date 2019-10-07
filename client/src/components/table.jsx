@@ -5,14 +5,15 @@ import trash from "../images/trash-solid.svg";
 import recyclabes from "../images/recycle-solid.svg";
 import broom from "../images/broom-solid.svg";
 import water from "../images/water-solid.svg";
+import ghost from "../images/ghost-solid.svg";
 
 class Table extends Component {
   state = {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
     chores: ["Trash", "Recyclables", "Sweep", "Mop"],
     logos: [trash, recyclabes, broom, water],
-    columnClass: "col border border-dark m-1 padding-col rounded fixed-col ",
-    topRow: "tabledata-toprow "
+    columnClass: "col border border-dark m-1 padding-two rounded fixed-col ",
+    borderCells: "border-class "
   };
 
   render() {
@@ -20,13 +21,13 @@ class Table extends Component {
       <React.Fragment>
         <div className="container table border border-dark rounded ">
           <div className="row ">
-            <div className={this.state.columnClass + this.state.topRow}>
-              Chores
+            <div className={this.state.columnClass + this.state.borderCells}>
+              <img src={ghost} height="50" width="57" />
             </div>
             {this.state.names.map(name => (
               <div
                 key={name}
-                className={this.state.columnClass + this.state.topRow}
+                className={this.state.columnClass + this.state.borderCells}
               >
                 {name}
               </div>
@@ -41,6 +42,7 @@ class Table extends Component {
               columns={this.state.names}
               logo={this.state.logos[index]}
               columnClass={this.state.columnClass}
+              borderCells={this.state.borderCells}
               name={chore}
             />
           ))}
