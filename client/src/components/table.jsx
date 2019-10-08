@@ -21,7 +21,7 @@ class Table extends Component {
     return (
       <React.Fragment>
         <div className="container table border border-dark rounded ">
-          <div className="row ">
+          <div className="row " style={{ whiteSpace: "nowrap" }}>
             <div className={this.state.columnClass + this.state.borderCells}>
               <img id="ghost" src={ghost} height="50" width="57" />
             </div>

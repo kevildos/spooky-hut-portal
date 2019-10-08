@@ -26,13 +26,18 @@
   /*color: #ffe9d0;*/
   color: white;
   background-color: #822900;
-  font-size: 2rem;
+  /*font-size: 2rem;*/
+  font-size: 3vw;
 }
 
 .col-five {
-  width: 16%;
+  /*width: 18%;*/
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
   border: 1px solid grey;
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   position: relative;
   min-height: 1px;
   padding-right: 15px;

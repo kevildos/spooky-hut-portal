@@ -73,7 +73,7 @@ class TableRow extends Component {
 
   render() {
     return (
-      <div className="row ">
+      <div className="row " style={{ whiteSpace: "nowrap" }}>
         <div className={this.props.columnClass + this.props.borderCells}>
           {this.props.name}
         </div>
