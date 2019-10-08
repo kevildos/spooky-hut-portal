@@ -10,7 +10,7 @@ import ghost from "../images/ghost-solid.svg";
 class Table extends Component {
   state = {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
-    chores: ["Trash", "Recyclables", "Sweep", "Mop"],
+    chores: ["Trash", "Recycle", "Sweep", "Mop"],
     logos: [trash, recyclabes, broom, water],
     columnClass:
       "col-five border border-dark m-1 padding-two rounded fixed-col ",
