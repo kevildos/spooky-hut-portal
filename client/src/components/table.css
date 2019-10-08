@@ -28,3 +28,33 @@
   background-color: #822900;
   font-size: 2rem;
 }
+
+.col-five {
+  width: 16%;
+  border: 1px solid grey;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#ghost {
+  animation-name: example;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-delay: 4000ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes example {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

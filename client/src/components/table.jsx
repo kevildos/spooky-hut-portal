@@ -12,7 +12,8 @@ class Table extends Component {
     names: ["Jaylane", "Cris", "Jesse", "Kevin"],
     chores: ["Trash", "Recyclables", "Sweep", "Mop"],
     logos: [trash, recyclabes, broom, water],
-    columnClass: "col border border-dark m-1 padding-two rounded fixed-col ",
+    columnClass:
+      "col-five border border-dark m-1 padding-two rounded fixed-col ",
     borderCells: "border-class "
   };
 
@@ -22,7 +23,7 @@ class Table extends Component {
         <div className="container table border border-dark rounded ">
           <div className="row ">
             <div className={this.state.columnClass + this.state.borderCells}>
-              <img src={ghost} height="50" width="57" />
+              <img id="ghost" src={ghost} height="50" width="57" />
             </div>
             {this.state.names.map(name => (
               <div
